@@ -1,0 +1,656 @@
+{
+  "_doc": "CTF-Glacier — vertical ice biome CTF map. Two cliff bases connected by a frozen river basin. Central ice-tower (50 m) gives contested high-ground. Low-friction glacier surface rewards ski-strafes. NEW-34 dispatch, Worker MAP2.",
+  "name": "CTF-Glacier",
+  "version": 1,
+  "world_size_m": 3072.0,
+  "placements": [
+    {
+      "asset": "base_core",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -720.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red cliff base — carved into the south glacier cliff face, sheltered from direct tower fire"
+    },
+    {
+      "asset": "base_core",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 720.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue cliff base — mirror of Red base on the sky layer"
+    },
+    {
+      "asset": "flag_stand",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 2.0,
+        "z": -700.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red flag stand — forward of the cliff base, exposed on the glacier shelf"
+    },
+    {
+      "asset": "flag_stand",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 652.88,
+        "z": 700.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue flag stand — mirror of Red flag stand"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": -60.0,
+        "y": 0.0,
+        "z": -760.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 1 — west side of cliff base, facing north toward glacier basin"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": -60.0,
+        "y": 650.88,
+        "z": 760.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 1 — mirror"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": 60.0,
+        "y": 0.0,
+        "z": -760.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 2 — east side of cliff base"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": 60.0,
+        "y": 650.88,
+        "z": 760.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 2 — mirror"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -800.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 3 — deep in the cliff alcove, back-line respawn"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 800.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 3 — mirror"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": -80.0,
+        "y": 0.0,
+        "z": -740.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 4 — far west flank, feeds the ice-tower approach route"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": -80.0,
+        "y": 650.88,
+        "z": 740.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 4 — mirror"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -5.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Central ice-tower — 50 m tall, contestable high-ground sniper position; both teams can ski up the lee side"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 5.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of central ice-tower on sky layer"
+    },
+    {
+      "asset": "ski_ramp_a",
+      "team": "Neutral",
+      "position": {
+        "x": -40.0,
+        "y": 0.0,
+        "z": -20.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Ice-tower west lee ramp — ski-launch onto the tower's west face for Red attackers"
+    },
+    {
+      "asset": "ski_ramp_a",
+      "team": "Neutral",
+      "position": {
+        "x": -40.0,
+        "y": 650.88,
+        "z": 20.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of ice-tower west lee ramp"
+    },
+    {
+      "asset": "ski_ramp_a",
+      "team": "Neutral",
+      "position": {
+        "x": 40.0,
+        "y": 0.0,
+        "z": -20.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Ice-tower east lee ramp — ski-launch onto the tower's east face"
+    },
+    {
+      "asset": "ski_ramp_a",
+      "team": "Neutral",
+      "position": {
+        "x": 40.0,
+        "y": 650.88,
+        "z": 20.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of ice-tower east lee ramp"
+    },
+    {
+      "asset": "ski_ramp_b",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -580.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red basin entry ramp — launches players from cliff shelf onto the frozen river basin"
+    },
+    {
+      "asset": "ski_ramp_b",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 580.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue basin entry ramp — mirror"
+    },
+    {
+      "asset": "ski_ramp_b",
+      "team": "Red",
+      "position": {
+        "x": -120.0,
+        "y": 0.0,
+        "z": -560.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red west flank ramp — feeds the west river-bank ski route toward the ice tower"
+    },
+    {
+      "asset": "ski_ramp_b",
+      "team": "Blue",
+      "position": {
+        "x": -120.0,
+        "y": 650.88,
+        "z": 560.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue west flank ramp — mirror"
+    },
+    {
+      "asset": "capture_zone",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -690.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red capture zone trigger — volume around Red flag stand; returning Blue flag here scores"
+    },
+    {
+      "asset": "capture_zone",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 690.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue capture zone trigger — mirror of Red capture zone"
+    },
+    {
+      "asset": "capture_zone",
+      "team": "Red",
+      "position": {
+        "x": -30.0,
+        "y": 0.0,
+        "z": -695.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red capture zone secondary trigger — flanking approach coverage"
+    },
+    {
+      "asset": "capture_zone",
+      "team": "Blue",
+      "position": {
+        "x": -30.0,
+        "y": 650.88,
+        "z": 695.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue capture zone secondary trigger — mirror"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": -150.0,
+        "y": 0.0,
+        "z": -350.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "West river-bank ice boulder — cover on the low basin route, protects flag carriers from tower fire"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": -150.0,
+        "y": 650.88,
+        "z": 350.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of west river-bank ice boulder"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": 150.0,
+        "y": 0.0,
+        "z": -350.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "East river-bank ice boulder — cover on the east basin route"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": 150.0,
+        "y": 650.88,
+        "z": 350.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of east river-bank ice boulder"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -200.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Basin mid-point rock cluster — primary cover at the frozen river center, flanks the ice-tower base"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 200.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of basin mid-point rock cluster"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Red",
+      "position": {
+        "x": -100.0,
+        "y": 0.0,
+        "z": -660.0
+      },
+      "yaw_deg": 270.0,
+      "layer": "terrain",
+      "notes": "Red base approach rock — cover for defenders on the west approach to the cliff base"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Blue",
+      "position": {
+        "x": -100.0,
+        "y": 650.88,
+        "z": 660.0
+      },
+      "yaw_deg": 270.0,
+      "layer": "sky",
+      "notes": "Blue base approach rock — mirror"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": -80.0,
+        "y": 0.0,
+        "z": -100.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "West ice-wall shard — directional cover on the west ice-tower approach, blocks sightlines from tower top"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": -80.0,
+        "y": 650.88,
+        "z": 100.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of west ice-wall shard"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": 80.0,
+        "y": 0.0,
+        "z": -100.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "East ice-wall shard — directional cover on the east ice-tower approach"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": 80.0,
+        "y": 650.88,
+        "z": 100.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of east ice-wall shard"
+    },
+    {
+      "asset": "inventory_station",
+      "team": "Red",
+      "position": {
+        "x": -40.0,
+        "y": 0.0,
+        "z": -740.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red inventory station — inside the cliff base, replenishes ammo before basin runs"
+    },
+    {
+      "asset": "inventory_station",
+      "team": "Blue",
+      "position": {
+        "x": -40.0,
+        "y": 650.88,
+        "z": 740.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue inventory station — mirror"
+    },
+    {
+      "asset": "generator",
+      "team": "Red",
+      "position": {
+        "x": 40.0,
+        "y": 0.0,
+        "z": -780.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red generator — destroyable; powers base turrets and sensor array"
+    },
+    {
+      "asset": "generator",
+      "team": "Blue",
+      "position": {
+        "x": 40.0,
+        "y": 650.88,
+        "z": 780.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue generator — mirror"
+    },
+    {
+      "asset": "sensor",
+      "team": "Red",
+      "position": {
+        "x": 80.0,
+        "y": 0.0,
+        "z": -700.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red sensor array — detects enemy movement on the east glacier approach; destroyable"
+    },
+    {
+      "asset": "sensor",
+      "team": "Blue",
+      "position": {
+        "x": 80.0,
+        "y": 650.88,
+        "z": 700.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue sensor array — mirror"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Red",
+      "position": {
+        "x": -50.0,
+        "y": 0.0,
+        "z": -710.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red turret base — covers the west approach to the Red flag stand; destroyable"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Blue",
+      "position": {
+        "x": -50.0,
+        "y": 650.88,
+        "z": 710.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue turret base — mirror"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": -20.0,
+        "y": 0.0,
+        "z": -680.0
+      },
+      "yaw_deg": 15.0,
+      "layer": "terrain",
+      "notes": "Decor crate near Red flag stand — ice-camp visual dressing"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": -20.0,
+        "y": 650.88,
+        "z": 680.0
+      },
+      "yaw_deg": 165.0,
+      "layer": "sky",
+      "notes": "Mirror decor crate near Blue flag stand"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": 20.0,
+        "y": 0.0,
+        "z": -685.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Decor barrel near Red flag stand — visual dressing"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": 20.0,
+        "y": 650.88,
+        "z": 685.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror decor barrel near Blue flag stand"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": 60.0,
+        "y": 0.0,
+        "z": -400.0
+      },
+      "yaw_deg": 30.0,
+      "layer": "terrain",
+      "notes": "East basin decor crate — visual dressing along the east river-bank route"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": 60.0,
+        "y": 650.88,
+        "z": 400.0
+      },
+      "yaw_deg": 150.0,
+      "layer": "sky",
+      "notes": "Mirror of east basin decor crate"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": -60.0,
+        "y": 0.0,
+        "z": -400.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "West basin decor barrel — visual dressing along the west river-bank route"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": -60.0,
+        "y": 650.88,
+        "z": 400.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of west basin decor barrel"
+    }
+  ]
+}

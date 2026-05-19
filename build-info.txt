@@ -1,0 +1,3 @@
+commit=58e33721d0cdebe9c835c0c25295ec5f0ebdc4bd
+built_at=2026-05-19T14:05:24Z
+wasm_bytes=45190245

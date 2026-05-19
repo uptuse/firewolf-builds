@@ -1,0 +1,436 @@
+{
+  "_doc": "CTF-Canyon — horizontal canyon biome CTF map. Two flag spires on opposing canyon rims bridged by a sky-rail at z=512 m. Canyon floor is loose_rock; sky-rail surface is polished_metal. Cohort D dispatch, Worker MAP3.",
+  "id": "ctf-canyon",
+  "display_name": "Canyon",
+  "tier": "Mid",
+  "name": "CTF-Canyon",
+  "version": 1,
+  "world_size_m": 3072.0,
+  "surfaces": {
+    "_doc": "NEW-50 per-surface friction overrides. loose_rock on canyon floor (moderate friction). polished_metal on sky-rail bridge (very low friction, fast traversal). sand on base-approach ramps (sticky, slows attackers).",
+    "loose_rock": 0.08,
+    "polished_metal": 0.01,
+    "sand": 0.20,
+    "rock": 0.05
+  },
+  "surface_tags": {
+    "canyon_floor": "loose_rock",
+    "sky_rail_bridge": "polished_metal"
+  },
+  "flag_red": {
+    "position": { "x": 0.0, "y": 0.0, "z": -700.0 },
+    "notes": "Red flag — on south canyon rim spire"
+  },
+  "flag_blue": {
+    "position": { "x": 0.0, "y": 0.0, "z": 700.0 },
+    "notes": "Blue flag — on north canyon rim spire, mirror of Red"
+  },
+  "surface_zones": [
+    {
+      "_doc": "Canyon floor — loose_rock surface for moderate friction gameplay",
+      "surface": "loose_rock",
+      "region": { "x_min": -200.0, "x_max": 200.0, "z_min": -1536.0, "z_max": 1536.0 }
+    },
+    {
+      "_doc": "Sky-rail bridge — polished_metal for fast traversal at z=512 m",
+      "surface": "polished_metal",
+      "region": { "x_min": -30.0, "x_max": 30.0, "z_min": 480.0, "z_max": 544.0 }
+    },
+    {
+      "_doc": "Red base approach ramp — sand to slow attackers",
+      "surface": "sand",
+      "region": { "x_min": -150.0, "x_max": 150.0, "z_min": -780.0, "z_max": -640.0 }
+    },
+    {
+      "_doc": "Blue base approach ramp — sand to slow attackers (mirror)",
+      "surface": "sand",
+      "region": { "x_min": -150.0, "x_max": 150.0, "z_min": 640.0, "z_max": 780.0 }
+    }
+  ],
+  "placements": [
+    {
+      "asset": "base_core",
+      "team": "Red",
+      "position": { "x": 0.0, "y": 0.0, "z": -720.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red base — on south canyon rim, elevated above canyon floor"
+    },
+    {
+      "asset": "base_core",
+      "team": "Blue",
+      "position": { "x": 0.0, "y": 0.0, "z": 720.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue base — on north canyon rim, mirror of Red"
+    },
+    {
+      "asset": "flag_stand",
+      "team": "Red",
+      "position": { "x": 0.0, "y": 2.0, "z": -700.0 },
+      "yaw_deg": 0.0,
+      "layer": "objective",
+      "notes": "Red flag stand — forward of Red base on south rim spire"
+    },
+    {
+      "asset": "flag_stand",
+      "team": "Blue",
+      "position": { "x": 0.0, "y": 2.0, "z": 700.0 },
+      "yaw_deg": 180.0,
+      "layer": "objective",
+      "notes": "Blue flag stand — forward of Blue base on north rim spire, mirror of Red"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": { "x": -100.0, "y": 0.0, "z": -760.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red spawn 1 — west side of south rim, 100 m from centre"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": { "x": -100.0, "y": 0.0, "z": 760.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue spawn 1 — mirror of Red spawn 1"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": { "x": 100.0, "y": 0.0, "z": -760.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red spawn 2 — east side of south rim, 100 m from centre (200 m from spawn 1)"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": { "x": 100.0, "y": 0.0, "z": 760.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue spawn 2 — mirror of Red spawn 2"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": { "x": -200.0, "y": 0.0, "z": -740.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red spawn 3 — far west rim, 200 m from spawn 2 (300 m from spawn 1)"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": { "x": -200.0, "y": 0.0, "z": 740.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue spawn 3 — mirror of Red spawn 3"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": { "x": 200.0, "y": 0.0, "z": -740.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red spawn 4 — far east rim, 400 m from spawn 3 (all spawns >= 80 m separation)"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": { "x": 200.0, "y": 0.0, "z": 740.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue spawn 4 — mirror of Red spawn 4"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Red",
+      "position": { "x": -80.0, "y": 0.0, "z": -680.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red defensive tower — west flank of south rim, guards flag approach"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Blue",
+      "position": { "x": -80.0, "y": 0.0, "z": 680.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue defensive tower — mirror of Red tower"
+    },
+    {
+      "asset": "tower_b",
+      "team": "Red",
+      "position": { "x": 80.0, "y": 0.0, "z": -680.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red secondary tower — east flank of south rim"
+    },
+    {
+      "asset": "tower_b",
+      "team": "Blue",
+      "position": { "x": 80.0, "y": 0.0, "z": 680.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue secondary tower — mirror of Red secondary tower"
+    },
+    {
+      "asset": "inventory_station",
+      "team": "Red",
+      "position": { "x": -40.0, "y": 0.0, "z": -750.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red inventory station — inside base perimeter"
+    },
+    {
+      "asset": "inventory_station",
+      "team": "Blue",
+      "position": { "x": -40.0, "y": 0.0, "z": 750.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue inventory station — mirror"
+    },
+    {
+      "asset": "generator",
+      "team": "Red",
+      "position": { "x": 40.0, "y": 0.0, "z": -760.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red generator — destroyable, powers Red turrets"
+    },
+    {
+      "asset": "generator",
+      "team": "Blue",
+      "position": { "x": 40.0, "y": 0.0, "z": 760.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue generator — mirror"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Red",
+      "position": { "x": 0.0, "y": 0.0, "z": -660.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red auto-turret — forward defence on south rim"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Blue",
+      "position": { "x": 0.0, "y": 0.0, "z": 660.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue auto-turret — mirror"
+    },
+    {
+      "asset": "sensor",
+      "team": "Red",
+      "position": { "x": -120.0, "y": 0.0, "z": -700.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "Red sensor array — west rim perimeter detection"
+    },
+    {
+      "asset": "sensor",
+      "team": "Blue",
+      "position": { "x": -120.0, "y": 0.0, "z": 700.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "Blue sensor array — mirror"
+    },
+    {
+      "asset": "ski_ramp_a",
+      "team": "Neutral",
+      "position": { "x": -20.0, "y": 0.0, "z": -580.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "South rim descent ramp — launches players onto canyon floor from Red rim"
+    },
+    {
+      "asset": "ski_ramp_a",
+      "team": "Neutral",
+      "position": { "x": -20.0, "y": 0.0, "z": 580.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "North rim descent ramp — mirror of south ramp"
+    },
+    {
+      "asset": "ski_ramp_b",
+      "team": "Neutral",
+      "position": { "x": 20.0, "y": 0.0, "z": -580.0 },
+      "yaw_deg": 0.0,
+      "layer": "base",
+      "notes": "South rim secondary ramp — east approach to canyon floor"
+    },
+    {
+      "asset": "ski_ramp_b",
+      "team": "Neutral",
+      "position": { "x": 20.0, "y": 0.0, "z": 580.0 },
+      "yaw_deg": 180.0,
+      "layer": "base",
+      "notes": "North rim secondary ramp — mirror"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": { "x": -80.0, "y": 0.0, "z": 0.0 },
+      "yaw_deg": 45.0,
+      "layer": "cover",
+      "notes": "Canyon floor cover — large rock formation at midline, west side"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": { "x": 80.0, "y": 0.0, "z": 0.0 },
+      "yaw_deg": 315.0,
+      "layer": "cover",
+      "notes": "Canyon floor cover — large rock formation at midline, east side"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": { "x": -50.0, "y": 0.0, "z": -300.0 },
+      "yaw_deg": 30.0,
+      "layer": "cover",
+      "notes": "South canyon floor cover — medium rock, south approach"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": { "x": -50.0, "y": 0.0, "z": 300.0 },
+      "yaw_deg": 150.0,
+      "layer": "cover",
+      "notes": "North canyon floor cover — mirror of south rock"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": { "x": 50.0, "y": 0.0, "z": -300.0 },
+      "yaw_deg": 60.0,
+      "layer": "cover",
+      "notes": "South canyon floor cover — east side medium rock"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": { "x": 50.0, "y": 0.0, "z": 300.0 },
+      "yaw_deg": 120.0,
+      "layer": "cover",
+      "notes": "North canyon floor cover — mirror"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": { "x": 0.0, "y": 0.0, "z": -200.0 },
+      "yaw_deg": 90.0,
+      "layer": "cover",
+      "notes": "Canyon floor low wall — south of midline, blocks east-west fire"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": { "x": 0.0, "y": 0.0, "z": 200.0 },
+      "yaw_deg": 90.0,
+      "layer": "cover",
+      "notes": "Canyon floor low wall — north of midline, mirror"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": { "x": -30.0, "y": 0.0, "z": -690.0 },
+      "yaw_deg": 20.0,
+      "layer": "decoration",
+      "notes": "Decor crate near Red flag stand — canyon camp visual dressing"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": { "x": -30.0, "y": 0.0, "z": 690.0 },
+      "yaw_deg": 160.0,
+      "layer": "decoration",
+      "notes": "Mirror decor crate near Blue flag stand"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": { "x": 30.0, "y": 0.0, "z": -690.0 },
+      "yaw_deg": 0.0,
+      "layer": "decoration",
+      "notes": "Decor barrel near Red flag stand"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": { "x": 30.0, "y": 0.0, "z": 690.0 },
+      "yaw_deg": 180.0,
+      "layer": "decoration",
+      "notes": "Mirror decor barrel near Blue flag stand"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": { "x": -60.0, "y": 0.0, "z": -400.0 },
+      "yaw_deg": 15.0,
+      "layer": "decoration",
+      "notes": "Canyon floor decor crate — south approach visual dressing"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": { "x": -60.0, "y": 0.0, "z": 400.0 },
+      "yaw_deg": 165.0,
+      "layer": "decoration",
+      "notes": "Mirror canyon floor decor crate"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": { "x": 60.0, "y": 0.0, "z": -400.0 },
+      "yaw_deg": 0.0,
+      "layer": "decoration",
+      "notes": "Canyon floor decor barrel — east side south approach"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": { "x": 60.0, "y": 0.0, "z": 400.0 },
+      "yaw_deg": 180.0,
+      "layer": "decoration",
+      "notes": "Mirror canyon floor decor barrel"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": { "x": -100.0, "y": 0.0, "z": -150.0 },
+      "yaw_deg": 90.0,
+      "layer": "cover",
+      "notes": "West canyon wall base cover — large rock near west rim wall"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": { "x": -100.0, "y": 0.0, "z": 150.0 },
+      "yaw_deg": 90.0,
+      "layer": "cover",
+      "notes": "Mirror west canyon wall base cover"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": { "x": 100.0, "y": 0.0, "z": -150.0 },
+      "yaw_deg": 270.0,
+      "layer": "cover",
+      "notes": "East canyon wall base cover — medium rock near east rim wall"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": { "x": 100.0, "y": 0.0, "z": 150.0 },
+      "yaw_deg": 270.0,
+      "layer": "cover",
+      "notes": "Mirror east canyon wall base cover"
+    }
+  ]
+}

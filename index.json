@@ -1,0 +1,9 @@
+{
+  "_doc": "Map-pack index. Lists all map manifest paths loaded by the client and server at startup. Append new entries here when adding maps.",
+  "maps": [
+    "assets/maps/ctf-slag.json",
+    "assets/maps/ctf-mesa.json",
+    "assets/maps/ctf-glacier.json",
+    "assets/maps/ctf-canyon.map.json"
+  ]
+}

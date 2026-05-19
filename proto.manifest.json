@@ -1,0 +1,37 @@
+{
+  "name": "proto",
+  "version": 1,
+  "world_size_m": 3072.0,
+  "placements": [
+    {
+      "asset": "tower_a",
+      "position": { "x": -200.0, "y": 0.0, "z": -300.0 },
+      "yaw": 0.0,
+      "layer": "base"
+    },
+    {
+      "asset": "cover_rock",
+      "position": { "x": -80.0, "y": 0.0, "z": -150.0 },
+      "yaw": 0.7853981633974483,
+      "layer": "cover"
+    },
+    {
+      "asset": "flag_stand",
+      "position": { "x": 0.0, "y": 0.0, "z": -500.0 },
+      "yaw": 0.0,
+      "layer": "objective"
+    },
+    {
+      "asset": "bunker_small",
+      "position": { "x": -120.0, "y": 0.0, "z": -400.0 },
+      "yaw": 1.5707963267948966,
+      "layer": "base"
+    },
+    {
+      "asset": "sensor_post",
+      "position": { "x": -50.0, "y": 0.0, "z": -250.0 },
+      "yaw": 0.0,
+      "layer": "decoration"
+    }
+  ]
+}
