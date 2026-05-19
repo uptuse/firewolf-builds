@@ -221,10 +221,18 @@
       setTimeout(hideStatus, 250);
       await initPromise;
       hideStatus();
+      // Auto-focus the canvas so keyboard events reach Bevy immediately.
+      // Without this, the player must click the canvas before typing works
+      // in the identity modal.
+      const canvas = document.getElementById('firewolf-canvas');
+      if (canvas) canvas.focus();
     } catch (err) {
       if (isWinitControlFlow(err)) {
         // Expected — the game is running. Hide the overlay if it's still up.
         hideStatus();
+        // Auto-focus canvas on the control-flow path too.
+        const canvas = document.getElementById('firewolf-canvas');
+        if (canvas) canvas.focus();
       } else {
         console.error(err);
         showError(err && err.stack ? err.stack : err);
