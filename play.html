@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Firewolf · play (debug build)</title>
+  <link rel="icon" href="data:," />
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #09090b;
+      color: #e4e4e7;
+      font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(63, 63, 70, 0.6);
+      flex: 0 0 auto;
+    }
+    header h1 {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d4d4d8;
+      margin: 0;
+      font-weight: 500;
+    }
+    header .meta {
+      font-size: 11px;
+      color: #71717a;
+    }
+    header a {
+      color: #a1a1aa;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    header a:hover {
+      color: #fafafa;
+    }
+    main {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      min-height: 0;
+    }
+    canvas#firewolf-canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: 1280px;
+      height: 720px;
+      background: #000;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    #status {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      max-width: 560px;
+      pointer-events: none;
+    }
+    #status .label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 12px;
+    }
+    #status h2 {
+      font-size: 20px;
+      color: #fafafa;
+      margin: 0 0 12px 0;
+      font-weight: 500;
+    }
+    #status p {
+      font-size: 13px;
+      color: #a1a1aa;
+      line-height: 1.5;
+      margin: 0;
+    }
+    #status pre {
+      text-align: left;
+      font-size: 11px;
+      color: #fca5a5;
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 4px;
+      padding: 12px;
+      margin-top: 12px;
+      overflow: auto;
+      max-height: 240px;
+    }
+    footer {
+      flex: 0 0 auto;
+      padding: 8px 20px;
+      border-top: 1px solid rgba(63, 63, 70, 0.6);
+      font-size: 11px;
+      color: #71717a;
+      display: flex;
+      justify-content: space-between;
+    }
+    footer a {
+      color: #a1a1aa;
+      text-decoration: underline;
+      text-decoration-color: rgba(161, 161, 170, 0.4);
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="https://uptuse.github.io/firewolf-builds/">← builds index</a>
+    <h1>Firewolf · play (debug build)</h1>
+    <span class="meta" id="meta">loading…</span>
+  </header>
+  <main>
+    <canvas id="firewolf-canvas" width="1280" height="720" tabindex="0"></canvas>
+    <div id="status">
+      <div class="label" id="status-label">Booting wasm</div>
+      <h2 id="status-headline">Fetching ~44 MB bundle…</h2>
+      <p id="status-detail">
+        First load is slow. Subsequent visits are cached by the browser.
+      </p>
+    </div>
+  </main>
+  <footer>
+    <span id="build-info">Bevy 0.14 · wasm-bindgen 0.2.121 · debug profile</span>
+    <span>
+      <a href="https://github.com/uptuse/firewolf-game" target="_blank" rel="noreferrer">source</a>
+    </span>
+  </footer>
+
+  <script type="module">
+    const meta = document.getElementById("meta");
+    const status = document.getElementById("status");
+    const label = document.getElementById("status-label");
+    const headline = document.getElementById("status-headline");
+    const detail = document.getElementById("status-detail");
+    const buildInfo = document.getElementById("build-info");
+
+    function setStatus(kind, l, h, d) {
+      label.textContent = l;
+      headline.textContent = h;
+      detail.textContent = d;
+      label.style.color = kind === "error" ? "#ef4444" : "#f59e0b";
+      meta.textContent =
+        kind === "error" ? "error" : kind === "ready" ? "online" : "loading…";
+    }
+    function hideStatus() {
+      status.style.display = "none";
+      meta.textContent = "online";
+    }
+    function showError(message) {
+      const pre = document.createElement("pre");
+      pre.textContent = String(message);
+      status.appendChild(pre);
+      setStatus("error", "Load failed", "Could not start the wasm bundle.",
+        "Open the browser console for the wasm-bindgen error, then hard-reload.");
+    }
+
+    // Fetch build-info.txt for the meta line so we can show the commit sha.
+    void fetch("./build-info.txt", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.text() : null))
+      .then((t) => {
+        if (!t) return;
+        const map = Object.fromEntries(
+          t.trim().split("\n").map((l) => {
+            const i = l.indexOf("=");
+            return i < 0 ? [l, ""] : [l.slice(0, i), l.slice(i + 1)];
+          }),
+        );
+        if (map.commit) {
+          buildInfo.textContent =
+            `Bevy 0.14 · wasm-bindgen 0.2.121 · debug · ${map.commit.slice(0, 8)} · built ${map.built_at ?? "?"}`;
+        }
+      })
+      .catch(() => {});
+
+    // bevy_winit on wasm uses a thrown exception to unwind back into the JS
+    // event loop — this is normal control flow, NOT an error. The exception
+    // message is exactly "Using exceptions for control flow, don't mind me.
+    // This isn't actually an error!" emitted by winit's web platform code.
+    // We hide the status overlay as soon as Bevy reaches its run loop, and
+    // suppress that specific message if it bubbles back out.
+    function isWinitControlFlow(err) {
+      const s = String(err && (err.message || err));
+      return s.includes("Using exceptions for control flow");
+    }
+
+    try {
+      const mod = await import("./firewolf_client.js");
+      setStatus("loading", "Booting wasm", "Initializing renderer…",
+        "Mounting on canvas…");
+      // Hide the overlay just before init returns — once we're past wasm
+      // instantiation the canvas is mounted and the user should see the game,
+      // not our spinner. If init throws synchronously before this, the catch
+      // below restores the error UI.
+      const initPromise = mod.default("./firewolf_client_bg.wasm");
+      // Give Bevy ~250ms to mount the canvas, then hide the overlay
+      // optimistically. The control-flow exception fires shortly after.
+      setTimeout(hideStatus, 250);
+      await initPromise;
+      hideStatus();
+    } catch (err) {
+      if (isWinitControlFlow(err)) {
+        // Expected — the game is running. Hide the overlay if it's still up.
+        hideStatus();
+      } else {
+        console.error(err);
+        showError(err && err.stack ? err.stack : err);
+      }
+    }
+
+    // Also suppress unhandledrejection for the same control-flow string,
+    // otherwise the browser console fills up with the same message every
+    // frame.
+    window.addEventListener("unhandledrejection", (e) => {
+      if (isWinitControlFlow(e.reason)) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
