@@ -3,103 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Firewolf · play (debug build)</title>
+  <title>Firewolf</title>
   <link rel="icon" href="data:," />
   <style>
-    :root {
-      color-scheme: dark;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      margin: 0;
-      padding: 0;
+      width: 100%;
       height: 100%;
-      background: #09090b;
-      color: #e4e4e7;
-      font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
       overflow: hidden;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(63, 63, 70, 0.6);
-      flex: 0 0 auto;
-    }
-    header h1 {
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #d4d4d8;
-      margin: 0;
-      font-weight: 500;
-    }
-    header .meta {
-      font-size: 11px;
-      color: #71717a;
-    }
-    header a {
-      color: #a1a1aa;
-      text-decoration: none;
-      font-size: 12px;
-    }
-    header a:hover {
-      color: #fafafa;
-    }
-    main {
-      flex: 1 1 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      min-height: 0;
+      background: #000;
+      color: #e4e4e7;
+      font-family: ui-sans-serif, system-ui, sans-serif;
     }
     canvas#firewolf-canvas {
       display: block;
-      max-width: 100%;
-      max-height: 100%;
-      width: 1280px;
-      height: 720px;
-      background: #000;
-      border: 1px solid #27272a;
-      border-radius: 6px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      width: 100vw;
+      height: 100vh;
+      cursor: crosshair;
     }
-    #status {
+    canvas#firewolf-canvas.locked {
+      cursor: none;
+    }
+    #overlay {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      max-width: 560px;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(0,0,0,0.85);
+      z-index: 100;
+      pointer-events: auto;
+      transition: opacity 0.3s;
+    }
+    #overlay.hidden {
+      opacity: 0;
       pointer-events: none;
     }
-    #status .label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
+    #overlay h1 {
+      font-size: 14px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #f59e0b;
       margin-bottom: 12px;
     }
-    #status h2 {
-      font-size: 20px;
-      color: #fafafa;
-      margin: 0 0 12px 0;
-      font-weight: 500;
-    }
-    #status p {
+    #overlay p {
       font-size: 13px;
       color: #a1a1aa;
-      line-height: 1.5;
-      margin: 0;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 400px;
     }
-    #status pre {
-      text-align: left;
+    #overlay .click-prompt {
+      margin-top: 24px;
+      font-size: 16px;
+      color: #fafafa;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    #overlay pre {
       font-size: 11px;
       color: #fca5a5;
       background: #18181b;
@@ -108,145 +73,143 @@
       padding: 12px;
       margin-top: 12px;
       overflow: auto;
-      max-height: 240px;
+      max-height: 200px;
+      max-width: 560px;
     }
-    footer {
-      flex: 0 0 auto;
-      padding: 8px 20px;
-      border-top: 1px solid rgba(63, 63, 70, 0.6);
-      font-size: 11px;
-      color: #71717a;
-      display: flex;
-      justify-content: space-between;
-    }
-    footer a {
-      color: #a1a1aa;
-      text-decoration: underline;
-      text-decoration-color: rgba(161, 161, 170, 0.4);
-      text-underline-offset: 2px;
+    #build-info {
+      position: fixed;
+      bottom: 8px;
+      left: 12px;
+      font-size: 10px;
+      color: #52525b;
+      z-index: 50;
     }
   </style>
 </head>
 <body>
-  <header>
-    <a href="https://uptuse.github.io/firewolf-builds/">← builds index</a>
-    <h1>Firewolf · play (debug build)</h1>
-    <span class="meta" id="meta">loading…</span>
-  </header>
-  <main>
-    <canvas id="firewolf-canvas" width="1280" height="720" tabindex="0"></canvas>
-    <div id="status">
-      <div class="label" id="status-label">Booting wasm</div>
-      <h2 id="status-headline">Fetching ~44 MB bundle…</h2>
-      <p id="status-detail">
-        First load is slow. Subsequent visits are cached by the browser.
-      </p>
-    </div>
-  </main>
-  <footer>
-    <span id="build-info">Bevy 0.14 · wasm-bindgen 0.2.121 · debug profile</span>
-    <span>
-      <a href="https://github.com/uptuse/firewolf-game" target="_blank" rel="noreferrer">source</a>
-    </span>
-  </footer>
+  <canvas id="firewolf-canvas" tabindex="0"></canvas>
+
+  <div id="overlay">
+    <h1 id="overlay-title">Loading</h1>
+    <p id="overlay-msg">Fetching ~44 MB wasm bundle. First load is slow; subsequent visits are cached.</p>
+  </div>
+
+  <div id="build-info"></div>
 
   <script type="module">
-    const meta = document.getElementById("meta");
-    const status = document.getElementById("status");
-    const label = document.getElementById("status-label");
-    const headline = document.getElementById("status-headline");
-    const detail = document.getElementById("status-detail");
-    const buildInfo = document.getElementById("build-info");
+    const canvas = document.getElementById('firewolf-canvas');
+    const overlay = document.getElementById('overlay');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayMsg = document.getElementById('overlay-msg');
+    const buildInfoEl = document.getElementById('build-info');
 
-    function setStatus(kind, l, h, d) {
-      label.textContent = l;
-      headline.textContent = h;
-      detail.textContent = d;
-      label.style.color = kind === "error" ? "#ef4444" : "#f59e0b";
-      meta.textContent =
-        kind === "error" ? "error" : kind === "ready" ? "online" : "loading…";
+    // ── Resize canvas to fill viewport ──────────────────────────────────────
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    function hideStatus() {
-      status.style.display = "none";
-      meta.textContent = "online";
-    }
-    function showError(message) {
-      const pre = document.createElement("pre");
-      pre.textContent = String(message);
-      status.appendChild(pre);
-      setStatus("error", "Load failed", "Could not start the wasm bundle.",
-        "Open the browser console for the wasm-bindgen error, then hard-reload.");
+    resize();
+    window.addEventListener('resize', resize);
+
+    // ── Pointer lock management ─────────────────────────────────────────────
+    let gameReady = false;
+    let pointerLocked = false;
+
+    function requestLock() {
+      if (!pointerLocked && gameReady) {
+        canvas.requestPointerLock().catch(() => {});
+      }
     }
 
-    // Fetch build-info.txt for the meta line so we can show the commit sha.
-    void fetch("./build-info.txt", { cache: "no-cache" })
-      .then((r) => (r.ok ? r.text() : null))
-      .then((t) => {
+    document.addEventListener('pointerlockchange', () => {
+      pointerLocked = (document.pointerLockElement === canvas);
+      if (pointerLocked) {
+        canvas.classList.add('locked');
+        overlay.classList.add('hidden');
+      } else {
+        canvas.classList.remove('locked');
+        // Show a "click to resume" prompt when pointer lock is lost
+        overlayTitle.textContent = 'Paused';
+        overlayMsg.innerHTML = '<span class="click-prompt">Click to resume</span>';
+        overlay.classList.remove('hidden');
+      }
+    });
+
+    // Click anywhere to (re-)acquire pointer lock
+    canvas.addEventListener('click', requestLock);
+    overlay.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      // Small delay to let overlay hide before requesting lock
+      setTimeout(requestLock, 50);
+    });
+
+    // ── Build info ──────────────────────────────────────────────────────────
+    void fetch('./build-info.txt', { cache: 'no-cache' })
+      .then(r => r.ok ? r.text() : null)
+      .then(t => {
         if (!t) return;
         const map = Object.fromEntries(
-          t.trim().split("\n").map((l) => {
-            const i = l.indexOf("=");
-            return i < 0 ? [l, ""] : [l.slice(0, i), l.slice(i + 1)];
-          }),
+          t.trim().split('\n').map(l => {
+            const i = l.indexOf('=');
+            return i < 0 ? [l, ''] : [l.slice(0, i), l.slice(i + 1)];
+          })
         );
         if (map.commit) {
-          buildInfo.textContent =
-            `Bevy 0.14 · wasm-bindgen 0.2.121 · debug · ${map.commit.slice(0, 8)} · built ${map.built_at ?? "?"}`;
+          buildInfoEl.textContent =
+            `Bevy 0.14 · ${map.commit.slice(0, 8)} · built ${map.built_at ?? '?'}`;
         }
       })
       .catch(() => {});
 
-    // bevy_winit on wasm uses a thrown exception to unwind back into the JS
-    // event loop — this is normal control flow, NOT an error. The exception
-    // message is exactly "Using exceptions for control flow, don't mind me.
-    // This isn't actually an error!" emitted by winit's web platform code.
-    // We hide the status overlay as soon as Bevy reaches its run loop, and
-    // suppress that specific message if it bubbles back out.
+    // ── Winit control-flow exception suppression ────────────────────────────
     function isWinitControlFlow(err) {
       const s = String(err && (err.message || err));
-      return s.includes("Using exceptions for control flow");
+      return s.includes('Using exceptions for control flow');
     }
 
+    // ── Boot wasm ───────────────────────────────────────────────────────────
     try {
-      const mod = await import("./firewolf_client.js");
-      setStatus("loading", "Booting wasm", "Initializing renderer…",
-        "Mounting on canvas…");
-      // Hide the overlay just before init returns — once we're past wasm
-      // instantiation the canvas is mounted and the user should see the game,
-      // not our spinner. If init throws synchronously before this, the catch
-      // below restores the error UI.
-      const initPromise = mod.default("./firewolf_client_bg.wasm");
-      // Give Bevy ~250ms to mount the canvas, then hide the overlay
-      // optimistically. The control-flow exception fires shortly after.
-      setTimeout(hideStatus, 250);
+      overlayTitle.textContent = 'Loading';
+      overlayMsg.textContent = 'Fetching ~44 MB wasm bundle…';
+
+      const mod = await import('./firewolf_client.js');
+
+      overlayTitle.textContent = 'Initializing';
+      overlayMsg.textContent = 'Mounting renderer on canvas…';
+
+      const initPromise = mod.default('./firewolf_client_bg.wasm');
+
+      // Give Bevy time to mount, then show "click to play"
+      setTimeout(() => {
+        gameReady = true;
+        overlayTitle.textContent = 'Ready';
+        overlayMsg.innerHTML = '<span class="click-prompt">Click to play</span><br><br><small style="color:#71717a">WASD to move · Mouse to look · Space to jump · Escape to pause</small>';
+      }, 500);
+
       await initPromise;
-      hideStatus();
-      // Auto-focus the canvas so keyboard events reach Bevy immediately.
-      // Without this, the player must click the canvas before typing works
-      // in the identity modal.
-      const canvas = document.getElementById('firewolf-canvas');
-      if (canvas) canvas.focus();
+      gameReady = true;
     } catch (err) {
       if (isWinitControlFlow(err)) {
-        // Expected — the game is running. Hide the overlay if it's still up.
-        hideStatus();
-        // Auto-focus canvas on the control-flow path too.
-        const canvas = document.getElementById('firewolf-canvas');
-        if (canvas) canvas.focus();
+        gameReady = true;
+        overlayTitle.textContent = 'Ready';
+        overlayMsg.innerHTML = '<span class="click-prompt">Click to play</span><br><br><small style="color:#71717a">WASD to move · Mouse to look · Space to jump · Escape to pause</small>';
       } else {
         console.error(err);
-        showError(err && err.stack ? err.stack : err);
+        overlayTitle.textContent = 'Error';
+        overlayMsg.textContent = 'Could not start the game.';
+        const pre = document.createElement('pre');
+        pre.textContent = err && err.stack ? err.stack : String(err);
+        overlay.appendChild(pre);
       }
     }
 
-    // Also suppress unhandledrejection for the same control-flow string,
-    // otherwise the browser console fills up with the same message every
-    // frame.
-    window.addEventListener("unhandledrejection", (e) => {
-      if (isWinitControlFlow(e.reason)) {
-        e.preventDefault();
-      }
+    // Suppress unhandledrejection for winit control flow
+    window.addEventListener('unhandledrejection', (e) => {
+      if (isWinitControlFlow(e.reason)) e.preventDefault();
     });
+
+    // Focus canvas immediately so Bevy receives keyboard events
+    canvas.focus();
   </script>
 </body>
 </html>
