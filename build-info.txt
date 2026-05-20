@@ -1,4 +1,4 @@
-build-date: 2026-05-20T13:50:23Z
-commit: 77fdffe
+build-date: 2026-05-20T15:19:27Z
+commit: 148cc2b
 features: --no-default-features
-fix: mirror terrain rotation removed, splatmap material applied
+note: mirror terrain biome fix (abs normals + lower snow threshold) + debug log cleanup
