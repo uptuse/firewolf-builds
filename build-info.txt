@@ -1,4 +1,4 @@
-build-date: 2026-05-20T15:36:09Z
-commit: 6f6c7f9
+build-date: 2026-05-20T15:48:28Z
+commit: 6f2e488
 features: --no-default-features
-note: gravity handoff trigger margin fix + camera roll + biome fix
+note: mirror terrain dark tint + less floaty physics (gravity -32, jump 11, jet 52)
