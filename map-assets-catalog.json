@@ -1,114 +1,166 @@
 {
-  "_doc": "Asset catalog stub for map manifests. Maps asset keys to placeholder mesh descriptions. Real meshes follow in a later pass. Referenced by NEW-9 spawner and NEW-10 map manifests.",
-  "_version": 1,
-  "assets": {
-    "base_core": {
-      "mesh": "placeholder_cube",
-      "scale": [12.0, 8.0, 12.0],
-      "color": "#1a3a6b",
-      "description": "Team base structure — the main building players defend and return flags to."
+  "entries": [
+    {
+      "key": "base_core",
+      "shape": "cube",
+      "dims": {
+        "half_x": 6.0,
+        "half_y": 4.0,
+        "half_z": 6.0
+      }
     },
-    "flag_stand": {
-      "mesh": "placeholder_cylinder",
-      "scale": [1.5, 3.0, 1.5],
-      "color": "#e8c040",
-      "description": "Flag stand — the objective point where the team flag rests when at home."
+    {
+      "key": "flag_stand",
+      "shape": "cylinder",
+      "dims": {
+        "half_x": 0.75,
+        "half_y": 1.5,
+        "half_z": 0.75
+      }
     },
-    "spawn_pad": {
-      "mesh": "placeholder_cube",
-      "scale": [4.0, 0.5, 4.0],
-      "color": "#2a6b2a",
-      "description": "Spawn pad — the platform where players respawn after death."
+    {
+      "key": "spawn_pad",
+      "shape": "cube",
+      "dims": {
+        "half_x": 2.0,
+        "half_y": 0.25,
+        "half_z": 2.0
+      }
     },
-    "tower_a": {
-      "mesh": "placeholder_cube",
-      "scale": [4.0, 12.0, 4.0],
-      "color": "#4a4a4a",
-      "description": "Tall defensive tower — provides elevated sniping position and line-of-sight control."
+    {
+      "key": "tower_a",
+      "shape": "cube",
+      "dims": {
+        "half_x": 2.0,
+        "half_y": 6.0,
+        "half_z": 2.0
+      }
     },
-    "tower_b": {
-      "mesh": "placeholder_cube",
-      "scale": [6.0, 8.0, 6.0],
-      "color": "#3a3a3a",
-      "description": "Medium defensive tower — shorter than tower_a, wider base for cover."
+    {
+      "key": "tower_b",
+      "shape": "cube",
+      "dims": {
+        "half_x": 3.0,
+        "half_y": 4.0,
+        "half_z": 3.0
+      }
     },
-    "cover_rock_a": {
-      "mesh": "placeholder_cube",
-      "scale": [5.0, 3.0, 4.0],
-      "color": "#6b5a3a",
-      "description": "Large rock formation — natural cover for players on foot."
+    {
+      "key": "cover_rock_a",
+      "shape": "cube",
+      "dims": {
+        "half_x": 2.5,
+        "half_y": 1.5,
+        "half_z": 2.0
+      }
     },
-    "cover_rock_b": {
-      "mesh": "placeholder_cube",
-      "scale": [3.0, 2.0, 3.0],
-      "color": "#5a4a2a",
-      "description": "Medium rock — smaller cover piece for mid-range engagements."
+    {
+      "key": "cover_rock_b",
+      "shape": "cube",
+      "dims": {
+        "half_x": 1.5,
+        "half_y": 1.0,
+        "half_z": 1.5
+      }
     },
-    "cover_wall_a": {
-      "mesh": "placeholder_cube",
-      "scale": [8.0, 3.0, 1.0],
-      "color": "#4a3a2a",
-      "description": "Low wall — directional cover, blocks line-of-sight from one angle."
+    {
+      "key": "cover_wall_a",
+      "shape": "cube",
+      "dims": {
+        "half_x": 4.0,
+        "half_y": 1.5,
+        "half_z": 0.5
+      }
     },
-    "inventory_station": {
-      "mesh": "placeholder_cube",
-      "scale": [3.0, 2.5, 3.0],
-      "color": "#1a6b6b",
-      "description": "Inventory station — replenishes player ammo and equipment."
+    {
+      "key": "inventory_station",
+      "shape": "cube",
+      "dims": {
+        "half_x": 1.5,
+        "half_y": 1.25,
+        "half_z": 1.5
+      }
     },
-    "generator": {
-      "mesh": "placeholder_cube",
-      "scale": [4.0, 3.0, 4.0],
-      "color": "#6b1a1a",
-      "description": "Power generator — destroyable structure that powers base defenses."
+    {
+      "key": "generator",
+      "shape": "cube",
+      "dims": {
+        "half_x": 2.0,
+        "half_y": 1.5,
+        "half_z": 2.0
+      }
     },
-    "sensor": {
-      "mesh": "placeholder_cylinder",
-      "scale": [2.0, 6.0, 2.0],
-      "color": "#6b6b1a",
-      "description": "Sensor array — detects enemy movement in a radius; destroyable."
+    {
+      "key": "sensor",
+      "shape": "cylinder",
+      "dims": {
+        "half_x": 1.0,
+        "half_y": 3.0,
+        "half_z": 1.0
+      }
     },
-    "turret_base": {
-      "mesh": "placeholder_cube",
-      "scale": [2.0, 2.0, 2.0],
-      "color": "#2a2a6b",
-      "description": "Auto-turret base — fires at nearby enemies; destroyable."
+    {
+      "key": "turret_base",
+      "shape": "cube",
+      "dims": {
+        "half_x": 1.0,
+        "half_y": 1.0,
+        "half_z": 1.0
+      }
     },
-    "decor_crate_a": {
-      "mesh": "placeholder_cube",
-      "scale": [1.5, 1.5, 1.5],
-      "color": "#5a4a1a",
-      "description": "Decorative crate — visual dressing, no gameplay function."
+    {
+      "key": "decor_crate_a",
+      "shape": "cube",
+      "dims": {
+        "half_x": 0.75,
+        "half_y": 0.75,
+        "half_z": 0.75
+      }
     },
-    "decor_barrel_a": {
-      "mesh": "placeholder_cylinder",
-      "scale": [0.8, 1.2, 0.8],
-      "color": "#3a3a1a",
-      "description": "Decorative barrel — visual dressing, no gameplay function."
+    {
+      "key": "decor_barrel_a",
+      "shape": "cylinder",
+      "dims": {
+        "half_x": 0.4,
+        "half_y": 0.6,
+        "half_z": 0.4
+      }
     },
-    "ski_ramp_a": {
-      "mesh": "placeholder_cube",
-      "scale": [8.0, 1.5, 16.0],
-      "color": "#1a5a1a",
-      "description": "Ski ramp — angled surface that accelerates skiing players."
+    {
+      "key": "ski_ramp_a",
+      "shape": "cube",
+      "dims": {
+        "half_x": 4.0,
+        "half_y": 0.75,
+        "half_z": 8.0
+      }
     },
-    "ski_ramp_b": {
-      "mesh": "placeholder_cube",
-      "scale": [6.0, 1.0, 12.0],
-      "color": "#1a4a1a",
-      "description": "Smaller ski ramp — shallower angle, for mid-speed approach."
+    {
+      "key": "ski_ramp_b",
+      "shape": "cube",
+      "dims": {
+        "half_x": 3.0,
+        "half_y": 0.5,
+        "half_z": 6.0
+      }
     },
-    "mesa_edge_marker": {
-      "mesh": "placeholder_cube",
-      "scale": [2.0, 1.0, 2.0],
-      "color": "#6b3a1a",
-      "description": "Mesa edge marker — visual indicator of mesa cliff edge."
+    {
+      "key": "mesa_edge_marker",
+      "shape": "cube",
+      "dims": {
+        "half_x": 1.0,
+        "half_y": 0.5,
+        "half_z": 1.0
+      }
     },
-    "ridge_crest_marker": {
-      "mesh": "placeholder_cube",
-      "scale": [2.0, 1.5, 2.0],
-      "color": "#3a6b1a",
-      "description": "Ridge crest marker — visual indicator of ridge high point."
+    {
+      "key": "ridge_crest_marker",
+      "shape": "cube",
+      "dims": {
+        "half_x": 1.0,
+        "half_y": 0.75,
+        "half_z": 1.0
+      }
     }
-  }
+  ]
 }
