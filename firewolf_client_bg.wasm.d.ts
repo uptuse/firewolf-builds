@@ -21,9 +21,10 @@ export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_3: (a
 export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_4: (a: number, b: number, c: any) => void;
 export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_5: (a: number, b: number, c: any) => void;
 export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_6: (a: number, b: number, c: any) => void;
-export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_7: (a: number, b: number, c: any) => void;
+export const wasm_bindgen__convert__closures_____invoke__h2deb83db68dfbedb: (a: number, b: number, c: any) => void;
 export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_8: (a: number, b: number, c: any) => void;
 export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_9: (a: number, b: number, c: any) => void;
+export const wasm_bindgen__convert__closures_____invoke__h2840ceb10e59632c_10: (a: number, b: number, c: any) => void;
 export const wasm_bindgen__convert__closures_____invoke__hde4fe67b34b89a0a: (a: number, b: number) => number;
 export const wasm_bindgen__convert__closures_____invoke__h6044dfe67906ac72: (a: number, b: number) => void;
 export const __wbindgen_malloc: (a: number, b: number) => number;
