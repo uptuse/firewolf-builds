@@ -1,4 +1,4 @@
-build-date: 2026-05-20T15:30:18Z
-commit: 15ca782
+build-date: 2026-05-20T15:36:09Z
+commit: 6f6c7f9
 features: --no-default-features
-note: camera roll on gravity flip + mirror biome fix + debug cleanup
+note: gravity handoff trigger margin fix + camera roll + biome fix
