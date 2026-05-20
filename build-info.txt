@@ -1,4 +1,4 @@
-build-date: 2026-05-20T15:19:27Z
-commit: 148cc2b
+build-date: 2026-05-20T15:30:18Z
+commit: 15ca782
 features: --no-default-features
-note: mirror terrain biome fix (abs normals + lower snow threshold) + debug log cleanup
+note: camera roll on gravity flip + mirror biome fix + debug cleanup
