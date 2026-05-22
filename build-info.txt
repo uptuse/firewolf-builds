@@ -1,1 +1,3 @@
-Firewolf A12 - a7ea062 - Terrain darkness follows moon rotation
+commit=a7ea062f
+built_at=2026-05-22 20:17 UTC
+branch=main
