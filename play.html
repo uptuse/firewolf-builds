@@ -86,6 +86,36 @@
       max-height: 200px;
       max-width: 560px;
     }
+
+    /* ── Loading progress bar ─────────────────────────────────────────── */
+    #load-progress-container {
+      width: 320px;
+      margin-top: 20px;
+      display: none; /* shown by JS when asset loading starts */
+    }
+    #load-progress-label {
+      font-size: 11px;
+      color: #71717a;
+      text-align: center;
+      margin-bottom: 6px;
+      font-family: monospace;
+    }
+    #load-progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: #27272a;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid #3f3f46;
+    }
+    #load-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
     #build-info {
       position: fixed;
       bottom: 16px;
@@ -107,6 +137,12 @@
   <div id="overlay">
     <h1 id="overlay-title">Loading</h1>
     <p id="overlay-msg">Fetching ~44 MB wasm bundle. First load is slow; subsequent visits are cached.</p>
+    <div id="load-progress-container">
+      <div id="load-progress-label">Loading weapons...</div>
+      <div id="load-progress-bar-bg">
+        <div id="load-progress-bar"></div>
+      </div>
+    </div>
   </div>
 
   <div id="build-info"></div>
@@ -117,6 +153,9 @@
     const overlayTitle = document.getElementById('overlay-title');
     const overlayMsg = document.getElementById('overlay-msg');
     const buildInfoEl = document.getElementById('build-info');
+    const progressContainer = document.getElementById('load-progress-container');
+    const progressLabel = document.getElementById('load-progress-label');
+    const progressBar = document.getElementById('load-progress-bar');
 
     // ── Resize canvas to fill viewport ──────────────────────────────────────
     function resize() {
@@ -146,6 +185,7 @@
         // Show a "click to resume" prompt when pointer lock is lost
         overlayTitle.textContent = 'Paused';
         overlayMsg.innerHTML = '<span class="click-prompt">Click to resume</span>';
+        progressContainer.style.display = 'none';
         overlay.classList.remove('hidden');
       }
     });
@@ -176,6 +216,56 @@
       })
       .catch(() => {});
 
+    // ── Asset preload progress polling ──────────────────────────────────────
+    let assetsReady = false;
+    let progressPollInterval = null;
+
+    function startProgressPolling() {
+      progressContainer.style.display = 'block';
+      overlayTitle.textContent = 'Loading Assets';
+      overlayMsg.textContent = 'Downloading weapon models (~109 MB). Cached after first load.';
+
+      progressPollInterval = setInterval(() => {
+        const el = document.getElementById('fw-load-progress');
+        if (!el) return;
+
+        const text = el.textContent || '';
+        const parts = text.split('/');
+        if (parts.length === 2) {
+          const loaded = parseInt(parts[0], 10);
+          const total = parseInt(parts[1], 10);
+          if (!isNaN(loaded) && !isNaN(total) && total > 0) {
+            const pct = Math.round((loaded / total) * 100);
+            progressBar.style.width = pct + '%';
+            progressLabel.textContent = `Loading weapons: ${loaded}/${total} (${pct}%)`;
+
+            if (loaded >= total && !assetsReady) {
+              assetsReady = true;
+              clearInterval(progressPollInterval);
+              // All assets loaded — show "Click to play"
+              showReady();
+            }
+          }
+        }
+      }, 200);
+
+      // Fallback: if after 60s assets haven't reported done, show ready anyway
+      setTimeout(() => {
+        if (!assetsReady) {
+          assetsReady = true;
+          clearInterval(progressPollInterval);
+          showReady();
+        }
+      }, 60000);
+    }
+
+    function showReady() {
+      gameReady = true;
+      overlayTitle.textContent = 'Ready';
+      overlayMsg.innerHTML = '<span class="click-prompt">Click to play</span><br><br><small style="color:#71717a">WASD move · Mouse look · Space jump · Q cycle weapon · 1-8 select weapon · RMB scope · Esc pause</small>';
+      progressContainer.style.display = 'none';
+    }
+
     // ── Winit control-flow exception suppression ────────────────────────────
     function isWinitControlFlow(err) {
       const s = String(err && (err.message || err));
@@ -195,24 +285,34 @@
 
       const initPromise = mod.default(`./firewolf_client_bg.wasm?v=${cb}`);
 
-      // Give Bevy time to mount, then show "click to play"
+      // Give Bevy time to mount and start preloading, then begin polling
       setTimeout(() => {
-        gameReady = true;
-        overlayTitle.textContent = 'Ready';
-        overlayMsg.innerHTML = '<span class="click-prompt">Click to play</span><br><br><small style="color:#71717a">WASD to move · Mouse to look · Space to jump · Escape to pause</small>';
-      }, 500);
+        startProgressPolling();
+      }, 1000);
 
       await initPromise;
-      gameReady = true;
+      // If initPromise resolves normally (unlikely with winit), mark ready
+      if (!assetsReady) {
+        // Wait a bit more for asset progress to complete
+        setTimeout(() => {
+          if (!assetsReady) {
+            assetsReady = true;
+            clearInterval(progressPollInterval);
+            showReady();
+          }
+        }, 2000);
+      }
     } catch (err) {
       if (isWinitControlFlow(err)) {
-        gameReady = true;
-        overlayTitle.textContent = 'Ready';
-        overlayMsg.innerHTML = '<span class="click-prompt">Click to play</span><br><br><small style="color:#71717a">WASD to move · Mouse to look · Space to jump · Escape to pause</small>';
+        // Bevy is running — start polling for asset progress
+        if (!progressPollInterval) {
+          startProgressPolling();
+        }
       } else {
         console.error(err);
         overlayTitle.textContent = 'Error';
         overlayMsg.textContent = 'Could not start the game.';
+        progressContainer.style.display = 'none';
         const pre = document.createElement('pre');
         pre.textContent = err && err.stack ? err.stack : String(err);
         overlay.appendChild(pre);
