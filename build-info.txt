@@ -1,1 +1,3 @@
-Firewolf A11 - 35e2693 - Spatial darkness rotates with moon
+commit=35e2693b
+built_at=2026-05-22 20:10 UTC
+branch=main
