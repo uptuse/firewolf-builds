@@ -1,1 +1,3 @@
-Firewolf A16 - 2456b1d - Narrow transition 4-5
+commit=2456b1d8
+built_at=2026-05-22 21:33 UTC
+branch=main
