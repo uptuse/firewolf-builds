@@ -1,3 +1,4 @@
-commit=137b8ac
-built_at=2026-05-22 03:31 UTC
-feature=projectile_visuals
+commit=5a18fe8
+built_at=2026-05-22 03:50 UTC
+backend=webgpu
+features=bloom,smaa,atmospheric_fog,tonemapping_tonymcmapface
