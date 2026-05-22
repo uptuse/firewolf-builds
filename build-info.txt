@@ -1,1 +1,3 @@
-Firewolf A8 - 66778f7 - DIAGNOSTIC: StandardMaterial terrain (red=lower, blue=mirror)
+commit=66778f70
+built_at=2026-05-22 19:33 UTC
+branch=main
