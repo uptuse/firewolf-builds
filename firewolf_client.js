@@ -735,10 +735,6 @@ function __wbg_get_imports() {
             const ret = arg0.maxDynamicUniformBuffersPerPipelineLayout;
             return ret;
         },
-        __wbg_maxInterStageShaderComponents_8790c8053bd90b1d: function(arg0) {
-            const ret = arg0.maxInterStageShaderComponents;
-            return ret;
-        },
         __wbg_maxSampledTexturesPerShaderStage_089216ded99dfb40: function(arg0) {
             const ret = arg0.maxSampledTexturesPerShaderStage;
             return ret;
