@@ -1,3 +1,1 @@
-commit=10a4f7fb
-built_at=2026-05-22 20:36 UTC
-branch=main
+Firewolf A14 - 0117b49 - Adjusted light/dark split
