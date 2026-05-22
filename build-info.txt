@@ -1,3 +1,1 @@
-commit=a7ea062f
-built_at=2026-05-22 20:17 UTC
-branch=main
+Firewolf A13 - 10a4f7f - Per-fragment terrain darkness with soft gradient
