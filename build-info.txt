@@ -1,3 +1,3 @@
-commit=82d0b81
-built_at=2026-05-22 03:22 UTC
-feature=durable_loading_gate
+commit=137b8ac
+built_at=2026-05-22 03:31 UTC
+feature=projectile_visuals
