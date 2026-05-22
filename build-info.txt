@@ -1,4 +1,4 @@
 commit=087f15a0e98aa56d6050a7392de93a717ef8f5a9
-built_at=2026-05-22T02:16:50Z
-wasm_bytes=30729048
-note=weapon-system + viewmodel-fix + T1-energy + gravity20 + proximity-skiing
+built_at=2026-05-22T02:29:46Z
+wasm_bytes=32270011
+note=added bevy_gltf feature for GLB weapon model loading

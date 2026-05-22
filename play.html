@@ -184,12 +184,12 @@
       overlayTitle.textContent = 'Loading';
       overlayMsg.textContent = 'Fetching ~44 MB wasm bundle…';
 
-      const mod = await import('./firewolf_client.js?v=20260522c');
+      const mod = await import('./firewolf_client.js?v=20260522d');
 
       overlayTitle.textContent = 'Initializing';
       overlayMsg.textContent = 'Mounting renderer on canvas…';
 
-      const initPromise = mod.default('./firewolf_client_bg.wasm?v=20260522c');
+      const initPromise = mod.default('./firewolf_client_bg.wasm?v=20260522d');
 
       // Give Bevy time to mount, then show "click to play"
       setTimeout(() => {
