@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uptuse.github.io/firewolf-game/schemas/constants.schema.json",
+  "title": "Firewolf constants mirror schema",
+  "description": "Validates JSON mirror files in assets/constants/ against the expected keys and types from Rust pub consts.",
+  "type": "object",
+  "oneOf": [
+    {
+      "properties": {
+        "_doc": { "type": "string" },
+        "HEIGHT_SCALE": { "type": "number" },
+        "MIRROR_PLANE_FACTOR": { "type": "number" },
+        "MIRROR_PLANE_Y": { "type": "number" },
+        "MIRROR_MIDPOINT_Y": { "type": "number" },
+        "TICK_HZ": { "type": "integer" },
+        "TICK_DT": { "type": "number" },
+        "DEFAULT_HEIGHTMAP_RES": { "type": "integer" },
+        "WORLD_SIZE_M": { "type": "number" }
+      },
+      "additionalProperties": false,
+      "required": ["HEIGHT_SCALE"]
+    },
+    {
+      "properties": {
+        "GRAVITY": { "type": "number" },
+        "PLAYER_HEIGHT": { "type": "number" },
+        "PLAYER_RADIUS": { "type": "number" },
+        "WALK_SPEED": { "type": "number" },
+        "JUMP_IMPULSE": { "type": "number" },
+        "JET_ACCEL": { "type": "number" },
+        "JET_FUEL_MAX_S": { "type": "number" },
+        "JET_FUEL_REGEN_PER_S": { "type": "number" },
+        "SKI_SLOPE_THRESHOLD_RAD": { "type": "number" },
+        "SKI_FRICTION": { "type": "number" },
+        "WALK_FRICTION": { "type": "number" }
+      },
+      "additionalProperties": false,
+      "required": ["GRAVITY"]
+    },
+    {
+      "properties": {
+        "PROTOCOL_VERSION": { "type": "integer" },
+        "BUILD_HASH": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "required": ["PROTOCOL_VERSION"]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "_doc": "Runtime-tunable world constants. Loaded at startup and merged onto the compile-time defaults from firewolf-shared::constants::world. See ADR-012 for HEIGHT_SCALE and ADR-040 for WORLD_SIZE_M.",
+  "HEIGHT_SCALE": 150.0,
+  "MIRROR_PLANE_FACTOR": 2.0,
+  "MIRROR_PLANE_Y": 2400.0,
+  "MIRROR_MIDPOINT_Y": 1200.0,
+  "TICK_HZ": 60,
+  "TICK_DT": 0.016666666666666666,
+  "CELL_SIZE_M": 8.0,
+  "DEFAULT_HEIGHTMAP_RES": 385,
+  "WORLD_SIZE_M": 3072.0
+}

@@ -1,0 +1,680 @@
+{
+  "_doc": "CTF-Mesa \u2014 keep-hill CTF map. Two flat-topped mesas separated by a wide basin. Bases on the mesa tops. Climbing penalised, jets necessary. NEW-10 dispatch, Worker MAP1.",
+  "name": "CTF-Mesa",
+  "version": 1,
+  "world_size_m": 3072.0,
+  "placements": [
+    {
+      "asset": "base_core",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -750.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red base \u2014 on top of the south mesa, commanding view of the basin"
+    },
+    {
+      "asset": "base_core",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 750.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue base \u2014 mirror of Red base on the sky layer"
+    },
+    {
+      "asset": "flag_stand",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 2.0,
+        "z": -730.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red flag stand \u2014 center of the south mesa top, exposed position"
+    },
+    {
+      "asset": "flag_stand",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 652.88,
+        "z": 730.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue flag stand \u2014 mirror of Red flag stand"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": -50.0,
+        "y": 0.0,
+        "z": -780.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 1 \u2014 west side of mesa top"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": -50.0,
+        "y": 650.88,
+        "z": 780.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 1 \u2014 mirror"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": 50.0,
+        "y": 0.0,
+        "z": -780.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 2 \u2014 east side of mesa top"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": 50.0,
+        "y": 650.88,
+        "z": 780.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 2 \u2014 mirror"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -800.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red spawn pad 3 \u2014 back edge of mesa top"
+    },
+    {
+      "asset": "spawn_pad",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 800.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue spawn pad 3 \u2014 mirror"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Red",
+      "position": {
+        "x": -100.0,
+        "y": 0.0,
+        "z": -720.0
+      },
+      "yaw_deg": 315.0,
+      "layer": "terrain",
+      "notes": "Red west mesa tower \u2014 overlooks the west basin approach"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Blue",
+      "position": {
+        "x": -100.0,
+        "y": 650.88,
+        "z": 720.0
+      },
+      "yaw_deg": 225.0,
+      "layer": "sky",
+      "notes": "Blue west mesa tower \u2014 mirror"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Red",
+      "position": {
+        "x": 100.0,
+        "y": 0.0,
+        "z": -720.0
+      },
+      "yaw_deg": 45.0,
+      "layer": "terrain",
+      "notes": "Red east mesa tower \u2014 overlooks the east basin approach"
+    },
+    {
+      "asset": "tower_a",
+      "team": "Blue",
+      "position": {
+        "x": 100.0,
+        "y": 650.88,
+        "z": 720.0
+      },
+      "yaw_deg": 135.0,
+      "layer": "sky",
+      "notes": "Blue east mesa tower \u2014 mirror"
+    },
+    {
+      "asset": "tower_b",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -680.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red forward mesa tower \u2014 covers the direct basin approach"
+    },
+    {
+      "asset": "tower_b",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 680.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue forward mesa tower \u2014 mirror"
+    },
+    {
+      "asset": "inventory_station",
+      "team": "Red",
+      "position": {
+        "x": -80.0,
+        "y": 0.0,
+        "z": -760.0
+      },
+      "yaw_deg": 90.0,
+      "layer": "terrain",
+      "notes": "Red inventory station \u2014 west side of mesa top"
+    },
+    {
+      "asset": "inventory_station",
+      "team": "Blue",
+      "position": {
+        "x": -80.0,
+        "y": 650.88,
+        "z": 760.0
+      },
+      "yaw_deg": 90.0,
+      "layer": "sky",
+      "notes": "Blue inventory station \u2014 mirror"
+    },
+    {
+      "asset": "generator",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -810.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red generator \u2014 back of mesa top, protected by terrain"
+    },
+    {
+      "asset": "generator",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 810.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue generator \u2014 mirror"
+    },
+    {
+      "asset": "sensor",
+      "team": "Red",
+      "position": {
+        "x": 0.0,
+        "y": 20.0,
+        "z": -650.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red sensor \u2014 mesa edge, wide basin detection coverage"
+    },
+    {
+      "asset": "sensor",
+      "team": "Blue",
+      "position": {
+        "x": 0.0,
+        "y": 670.88,
+        "z": 650.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue sensor \u2014 mirror"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Red",
+      "position": {
+        "x": -60.0,
+        "y": 5.0,
+        "z": -700.0
+      },
+      "yaw_deg": 315.0,
+      "layer": "terrain",
+      "notes": "Red west turret \u2014 covers west mesa edge approach"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Blue",
+      "position": {
+        "x": -60.0,
+        "y": 655.88,
+        "z": 700.0
+      },
+      "yaw_deg": 225.0,
+      "layer": "sky",
+      "notes": "Blue west turret \u2014 mirror"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Red",
+      "position": {
+        "x": 60.0,
+        "y": 5.0,
+        "z": -700.0
+      },
+      "yaw_deg": 45.0,
+      "layer": "terrain",
+      "notes": "Red east turret \u2014 covers east mesa edge approach"
+    },
+    {
+      "asset": "turret_base",
+      "team": "Blue",
+      "position": {
+        "x": 60.0,
+        "y": 655.88,
+        "z": 700.0
+      },
+      "yaw_deg": 135.0,
+      "layer": "sky",
+      "notes": "Blue east turret \u2014 mirror"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -300.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Basin center rock \u2014 primary mid-basin cover for attackers crossing the flat"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 300.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of basin center rock"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": 200.0,
+        "y": 0.0,
+        "z": -200.0
+      },
+      "yaw_deg": 45.0,
+      "layer": "terrain",
+      "notes": "East basin rock \u2014 cover on east basin crossing"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": 200.0,
+        "y": 650.88,
+        "z": 200.0
+      },
+      "yaw_deg": 135.0,
+      "layer": "sky",
+      "notes": "Mirror of east basin rock"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": -200.0,
+        "y": 0.0,
+        "z": -200.0
+      },
+      "yaw_deg": 315.0,
+      "layer": "terrain",
+      "notes": "West basin rock \u2014 cover on west basin crossing"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": -200.0,
+        "y": 650.88,
+        "z": 200.0
+      },
+      "yaw_deg": 225.0,
+      "layer": "sky",
+      "notes": "Mirror of west basin rock"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Red",
+      "position": {
+        "x": -120.0,
+        "y": 0.0,
+        "z": -690.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red mesa edge wall \u2014 west side, channels attackers away from cliff edge"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Blue",
+      "position": {
+        "x": -120.0,
+        "y": 650.88,
+        "z": 690.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue mesa edge wall \u2014 mirror"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Red",
+      "position": {
+        "x": 120.0,
+        "y": 0.0,
+        "z": -690.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red mesa edge wall \u2014 east side"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Blue",
+      "position": {
+        "x": 120.0,
+        "y": 650.88,
+        "z": 690.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Blue mesa edge wall \u2014 mirror"
+    },
+    {
+      "asset": "mesa_edge_marker",
+      "team": "Neutral",
+      "position": {
+        "x": -150.0,
+        "y": 0.0,
+        "z": -660.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red mesa west edge marker \u2014 visual indicator of cliff edge"
+    },
+    {
+      "asset": "mesa_edge_marker",
+      "team": "Neutral",
+      "position": {
+        "x": -150.0,
+        "y": 650.88,
+        "z": 660.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of Red mesa west edge marker"
+    },
+    {
+      "asset": "mesa_edge_marker",
+      "team": "Neutral",
+      "position": {
+        "x": 150.0,
+        "y": 0.0,
+        "z": -660.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Red mesa east edge marker \u2014 visual indicator of cliff edge"
+    },
+    {
+      "asset": "mesa_edge_marker",
+      "team": "Neutral",
+      "position": {
+        "x": 150.0,
+        "y": 650.88,
+        "z": 660.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of Red mesa east edge marker"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Basin center midpoint rock \u2014 at the exact center of the map, key mid-basin cover"
+    },
+    {
+      "asset": "cover_rock_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 0.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of basin center midpoint rock"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": 80.0,
+        "y": 0.0,
+        "z": -100.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Near-Red-side basin rock \u2014 cover for attackers approaching mesa base"
+    },
+    {
+      "asset": "cover_rock_b",
+      "team": "Neutral",
+      "position": {
+        "x": 80.0,
+        "y": 650.88,
+        "z": 100.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of near-Red-side basin rock"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": -10.0,
+        "y": 0.0,
+        "z": -740.0
+      },
+      "yaw_deg": 20.0,
+      "layer": "terrain",
+      "notes": "Decor crate near Red flag stand \u2014 visual dressing"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": -10.0,
+        "y": 650.88,
+        "z": 740.0
+      },
+      "yaw_deg": 160.0,
+      "layer": "sky",
+      "notes": "Mirror decor crate near Blue flag stand"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": 10.0,
+        "y": 0.0,
+        "z": -745.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Decor barrel near Red flag stand"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": 10.0,
+        "y": 650.88,
+        "z": 745.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror decor barrel near Blue flag stand"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -500.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Basin decor crate \u2014 visual dressing at mid-basin"
+    },
+    {
+      "asset": "decor_crate_a",
+      "team": "Neutral",
+      "position": {
+        "x": 0.0,
+        "y": 650.88,
+        "z": 500.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror basin decor crate"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": -100.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Basin center west wall \u2014 mid-map directional cover for crossing players"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": -100.0,
+        "y": 650.88,
+        "z": 0.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of basin center west wall"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": 100.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "Basin center east wall \u2014 mid-map directional cover"
+    },
+    {
+      "asset": "cover_wall_a",
+      "team": "Neutral",
+      "position": {
+        "x": 100.0,
+        "y": 650.88,
+        "z": 0.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of basin center east wall"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": -50.0,
+        "y": 0.0,
+        "z": -400.0
+      },
+      "yaw_deg": 0.0,
+      "layer": "terrain",
+      "notes": "South basin barrel \u2014 visual dressing on south basin approach"
+    },
+    {
+      "asset": "decor_barrel_a",
+      "team": "Neutral",
+      "position": {
+        "x": -50.0,
+        "y": 650.88,
+        "z": 400.0
+      },
+      "yaw_deg": 180.0,
+      "layer": "sky",
+      "notes": "Mirror of south basin barrel"
+    }
+  ]
+}
