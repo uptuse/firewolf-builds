@@ -85,11 +85,14 @@
     }
     #build-info {
       position: fixed;
-      bottom: 8px;
-      left: 12px;
-      font-size: 10px;
-      color: #52525b;
+      bottom: 16px;
+      left: 16px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e4e4e7;
+      text-shadow: 0 0 4px #000, 0 0 8px #000;
       z-index: 50;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -181,12 +184,12 @@
       overlayTitle.textContent = 'Loading';
       overlayMsg.textContent = 'Fetching ~44 MB wasm bundle…';
 
-      const mod = await import('./firewolf_client.js?v=20260522b');
+      const mod = await import('./firewolf_client.js?v=20260522c');
 
       overlayTitle.textContent = 'Initializing';
       overlayMsg.textContent = 'Mounting renderer on canvas…';
 
-      const initPromise = mod.default('./firewolf_client_bg.wasm?v=20260522b');
+      const initPromise = mod.default('./firewolf_client_bg.wasm?v=20260522c');
 
       // Give Bevy time to mount, then show "click to play"
       setTimeout(() => {
