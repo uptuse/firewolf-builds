@@ -1,4 +1,4 @@
-commit=7662251aedc004e9a16417e651c476c9e96f0b6f
-built_at=2026-05-22T02:40:30Z
-wasm_bytes=32276401
-note=viewmodel fallback fix + glb_ready detection
+commit=63dd6192f9a824a8b162ef4661207193054b4f39
+built_at=2026-05-22T02:49:29Z
+wasm_bytes=32523033
+note=JPEG texture support for GLB weapon models
