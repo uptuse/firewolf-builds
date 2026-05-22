@@ -1,1 +1,3 @@
-Firewolf A9 - e2c855c - Procedural terrain shader (no textures)
+commit=e2c855cb
+built_at=2026-05-22 19:46 UTC
+branch=main
