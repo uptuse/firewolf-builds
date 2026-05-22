@@ -1,3 +1,1 @@
-commit=bfd4d2a2
-built_at=2026-05-22 14:51 UTC
-branch=main
+commit=5ca907e\nbuilt_at=2026-05-22 15:20 UTC\nbranch=main\nversion=Firewolf A1
