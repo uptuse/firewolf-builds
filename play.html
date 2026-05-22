@@ -193,6 +193,8 @@
     // Click anywhere to (re-)acquire pointer lock
     canvas.addEventListener('click', requestLock);
     overlay.addEventListener('click', () => {
+      // Block clicks until assets are loaded and game is ready
+      if (!gameReady) return;
       overlay.classList.add('hidden');
       // Small delay to let overlay hide before requesting lock
       setTimeout(requestLock, 50);
