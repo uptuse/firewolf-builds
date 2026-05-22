@@ -1,3 +1,1 @@
-commit=623e90d3
-built_at=2026-05-22 22:21 UTC
-branch=main
+Firewolf A19 - f8107d5 - Auto-teleport + mid-sandwich fog + 1.5x speed
