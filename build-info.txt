@@ -1,4 +1,4 @@
-commit=dafb36212b7c2e2048b7976395e9e39fcee59b75
-built_at=2026-05-20T20:35:38Z
-wasm_bytes=45950439
-note=audit-fix merge (wasm-mouse, ski-accel, wasm-keys, 3p-cam, ctf-flags)
+commit=087f15a0e98aa56d6050a7392de93a717ef8f5a9
+built_at=2026-05-22T02:16:50Z
+wasm_bytes=30729048
+note=weapon-system + viewmodel-fix + T1-energy + gravity20 + proximity-skiing
