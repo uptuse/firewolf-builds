@@ -1,1 +1,3 @@
-Firewolf A10 - 0647b05 - Orbital sun/moon (1 cycle per game)
+commit=0647b051
+built_at=2026-05-22 20:03 UTC
+branch=main
