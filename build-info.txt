@@ -1,3 +1,3 @@
-commit=a23b6b72
-built_at=2026-05-23 19:12 UTC
+commit=f4e2983a
+built_at=2026-05-23 20:00 UTC
 branch=main
