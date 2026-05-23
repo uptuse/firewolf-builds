@@ -1,0 +1,3 @@
+commit=e12f15fa
+built_at=2026-05-23 10:44 UTC
+branch=feat/dev-editor-integration
