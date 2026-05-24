@@ -104,14 +104,5 @@ fn fragment(
     let ambient = 0.3;
     let lit = blended.rgb * (ambient + (1.0 - ambient) * ndotl);
 
-    // DEBUG: Output bright magenta to confirm this shader is actually being used.
-    // If you see magenta terrain, the shader IS running but textures may be wrong.
-    // If you see grey/green procedural terrain, this shader is NOT being used.
-    let DEBUG_MODE = true;
-    if (DEBUG_MODE) {
-        // Mix a bit of the computed color with magenta so we can see both
-        return vec4<f32>(0.9, 0.0, 0.9, 1.0);
-    }
-
     return vec4<f32>(lit, 1.0);
 }
