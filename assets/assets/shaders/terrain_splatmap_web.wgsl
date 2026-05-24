@@ -83,10 +83,12 @@ fn fragment(
     let tile_scale = 0.125;
     let tex_uv = mesh.world_position.xz * tile_scale;
 
-    // DEBUG: output only rock texture (layer 0) to verify texture sampling works
+    // DEBUG: output UV as color to verify world_position varies across terrain
+    // R = fract(u), G = fract(v), B = 0
+    // If you see a rainbow gradient, UVs work. If solid color, world_position is broken.
     if (DEBUG_SINGLE_LAYER) {
-        let rock_sample = textureSample(terrain_array_tex, terrain_array_sampler, tex_uv, 0);
-        return rock_sample;
+        let uv_debug = fract(tex_uv);
+        return vec4<f32>(uv_debug.x, uv_debug.y, 0.0, 1.0);
     }
 
     // Compute splat weights from world normal and position
