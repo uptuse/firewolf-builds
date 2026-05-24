@@ -1,8 +1,10 @@
 // terrain_splatmap_web.wgsl — Array-texture splatmap terrain shader (WASM/WebGPU)
 //
 // Uses a single texture_2d_array with 4 layers (rock=0, grass=1, sand=2, snow=3)
-// blended by slope+altitude. Simple N·L lighting (no PBR imports to avoid
-// shader compilation failures on BrowserWebGPU).
+// blended by slope+altitude. Simple N·L lighting.
+//
+// Uses textureSampleLevel (explicit LOD=0) instead of textureSample because
+// implicit LOD calculation for texture_2d_array is unreliable on BrowserWebGPU.
 //
 // Based on Bevy 0.14's official array_texture.wgsl pattern.
 // Uses hardcoded @group(2) for material bindings (Bevy 0.14 standard).
@@ -28,20 +30,11 @@ var terrain_array_tex: texture_2d_array<f32>;
 @group(2) @binding(2)
 var terrain_array_sampler: sampler;
 
-// ── Debug mode ─────────────────────────────────────────────────────────────
-// Set to true to output ONLY the raw texture sample from layer 0 (rock).
-// If you see the rock texture tiling, textures work. If you see solid color,
-// the array texture binding is broken.
-const DEBUG_SINGLE_LAYER: bool = true;
-
 // ── Splat weight computation ────────────────────────────────────────────────
 
-/// Compute RGBA splat weights from world-space normal.y and altitude.
-/// Returns vec4: x=rock, y=grass, z=sand, w=snow
 fn compute_splat_weights(normal_y: f32, world_y: f32, max_h: f32) -> vec4<f32> {
     let abs_ny = abs(normal_y);
 
-    // Mirror terrain detection and altitude computation
     let is_mirror = step(max_h * 1.2, world_y);
     let lower_alt = world_y / max(max_h, 0.001);
     let mirror_alt = (2.0 * max_h - world_y) / max(max_h, 0.001);
@@ -53,16 +46,13 @@ fn compute_splat_weights(normal_y: f32, world_y: f32, max_h: f32) -> vec4<f32> {
     let ALT_GRASS_END:   f32 = 0.40;
     let BLEND_W:         f32 = 0.08;
 
-    // Slope masks
     let flat_mask = smoothstep(FLAT_THRESHOLD - BLEND_W, FLAT_THRESHOLD + BLEND_W, abs_ny);
     let steep_mask = 1.0 - smoothstep(STEEP_THRESHOLD - BLEND_W, STEEP_THRESHOLD + BLEND_W, abs_ny);
     let mid_mask = 1.0 - flat_mask - steep_mask;
 
-    // Altitude masks
     let snow_alt_mask = smoothstep(ALT_SNOW_START - BLEND_W, ALT_SNOW_START + BLEND_W, altitude_frac);
     let grass_alt_mask = 1.0 - smoothstep(ALT_GRASS_END - BLEND_W, ALT_GRASS_END + BLEND_W, altitude_frac);
 
-    // Biome weights
     let rock_weight = steep_mask;
     let grass_weight = flat_mask * grass_alt_mask;
     let snow_weight = flat_mask * snow_alt_mask;
@@ -83,14 +73,6 @@ fn fragment(
     let tile_scale = 0.125;
     let tex_uv = mesh.world_position.xz * tile_scale;
 
-    // DEBUG: output UV as color to verify world_position varies across terrain
-    // R = fract(u), G = fract(v), B = 0
-    // If you see a rainbow gradient, UVs work. If solid color, world_position is broken.
-    if (DEBUG_SINGLE_LAYER) {
-        let uv_debug = fract(tex_uv);
-        return vec4<f32>(uv_debug.x, uv_debug.y, 0.0, 1.0);
-    }
-
     // Compute splat weights from world normal and position
     let normal = normalize(mesh.world_normal);
     let w = compute_splat_weights(
@@ -99,12 +81,12 @@ fn fragment(
         splat_uniforms.max_height,
     );
 
-    // Sample each layer of the array texture
-    // Layer 0=rock, 1=grass, 2=sand, 3=snow
-    let rock_color  = textureSample(terrain_array_tex, terrain_array_sampler, tex_uv, 0);
-    let grass_color = textureSample(terrain_array_tex, terrain_array_sampler, tex_uv, 1);
-    let sand_color  = textureSample(terrain_array_tex, terrain_array_sampler, tex_uv, 2);
-    let snow_color  = textureSample(terrain_array_tex, terrain_array_sampler, tex_uv, 3);
+    // Sample each layer of the array texture using explicit LOD 0
+    // (textureSample with implicit LOD is unreliable for array textures on BrowserWebGPU)
+    let rock_color  = textureSampleLevel(terrain_array_tex, terrain_array_sampler, tex_uv, 0, 0.0);
+    let grass_color = textureSampleLevel(terrain_array_tex, terrain_array_sampler, tex_uv, 1, 0.0);
+    let sand_color  = textureSampleLevel(terrain_array_tex, terrain_array_sampler, tex_uv, 2, 0.0);
+    let snow_color  = textureSampleLevel(terrain_array_tex, terrain_array_sampler, tex_uv, 3, 0.0);
 
     // Blend by splat weights
     let blended = rock_color  * w.x
