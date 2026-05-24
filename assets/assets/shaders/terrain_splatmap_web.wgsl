@@ -3,21 +3,18 @@
 // Uses a single texture_2d_array with 4 layers (rock=0, grass=1, sand=2, snow=3)
 // blended by slope+altitude. Integrates with Bevy's PBR pipeline for proper lighting.
 //
-// This shader follows Bevy's official array_texture example pattern:
-// - Uses #{ MATERIAL_BIND_GROUP } preprocessor (resolved by Bevy at runtime)
-// - Uses bevy_pbr::forward_io::VertexOutput (Bevy's standard vertex output)
-// - Feeds into pbr_input_new() + apply_pbr_lighting() for native PBR
+// Based directly on Bevy 0.14's official array_texture.wgsl example.
+// Uses hardcoded @group(2) for material bindings (Bevy 0.14 standard).
 
 #import bevy_pbr::{
     forward_io::VertexOutput,
-    mesh_functions,
     mesh_view_bindings::view,
     pbr_types::{STANDARD_MATERIAL_FLAGS_DOUBLE_SIDED_BIT, PbrInput, pbr_input_new},
     pbr_functions as fns,
 }
 #import bevy_core_pipeline::tonemapping::tone_mapping
 
-// ── Material bindings ────────────────────────────────────────────────────────
+// ── Material bindings (group 2 = Bevy 0.14 material bind group) ─────────────
 
 struct SplatmapUniforms {
     sun_direction: vec4<f32>,
@@ -27,16 +24,16 @@ struct SplatmapUniforms {
     _pad3: f32,
 }
 
-@group(#{MATERIAL_BIND_GROUP}) @binding(0)
+@group(2) @binding(0)
 var<uniform> splat_uniforms: SplatmapUniforms;
 
-@group(#{MATERIAL_BIND_GROUP}) @binding(1)
+@group(2) @binding(1)
 var terrain_array_tex: texture_2d_array<f32>;
 
-@group(#{MATERIAL_BIND_GROUP}) @binding(2)
+@group(2) @binding(2)
 var terrain_array_sampler: sampler;
 
-// ── Splat weight computation ─────────────────────────────────────────────────
+// ── Splat weight computation ────────────────────────────────────────────────
 
 /// Compute RGBA splat weights from world-space normal.y and altitude.
 /// Returns vec4: x=rock, y=grass, z=sand, w=snow
@@ -75,7 +72,7 @@ fn compute_splat_weights(normal_y: f32, world_y: f32, max_h: f32) -> vec4<f32> {
     return weights / max(total, 0.001);
 }
 
-// ── Fragment stage ───────────────────────────────────────────────────────────
+// ── Fragment stage ──────────────────────────────────────────────────────────
 
 @fragment
 fn fragment(
@@ -107,7 +104,7 @@ fn fragment(
                 + sand_color  * w.z
                 + snow_color  * w.w;
 
-    // ── PBR lighting integration ─────────────────────────────────────────────
+    // ── PBR lighting integration (matches Bevy 0.14 array_texture.wgsl) ─────
     var pbr_input: PbrInput = pbr_input_new();
     pbr_input.material.base_color = blended;
 
