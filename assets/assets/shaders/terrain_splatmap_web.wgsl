@@ -1,18 +1,13 @@
 // terrain_splatmap_web.wgsl — Array-texture splatmap terrain shader (WASM/WebGPU)
 //
 // Uses a single texture_2d_array with 4 layers (rock=0, grass=1, sand=2, snow=3)
-// blended by slope+altitude. Integrates with Bevy's PBR pipeline for proper lighting.
+// blended by slope+altitude. Simple N·L lighting (no PBR imports to avoid
+// shader compilation failures on BrowserWebGPU).
 //
-// Based directly on Bevy 0.14's official array_texture.wgsl example.
+// Based on Bevy 0.14's official array_texture.wgsl pattern.
 // Uses hardcoded @group(2) for material bindings (Bevy 0.14 standard).
 
-#import bevy_pbr::{
-    forward_io::VertexOutput,
-    mesh_view_bindings::view,
-    pbr_types::{STANDARD_MATERIAL_FLAGS_DOUBLE_SIDED_BIT, PbrInput, pbr_input_new},
-    pbr_functions as fns,
-}
-#import bevy_core_pipeline::tonemapping::tone_mapping
+#import bevy_pbr::forward_io::VertexOutput
 
 // ── Material bindings (group 2 = Bevy 0.14 material bind group) ─────────────
 
@@ -76,7 +71,6 @@ fn compute_splat_weights(normal_y: f32, world_y: f32, max_h: f32) -> vec4<f32> {
 
 @fragment
 fn fragment(
-    @builtin(front_facing) is_front: bool,
     mesh: VertexOutput,
 ) -> @location(0) vec4<f32> {
     // World-space tiling UV (1 tile = 8m)
@@ -104,23 +98,11 @@ fn fragment(
                 + sand_color  * w.z
                 + snow_color  * w.w;
 
-    // ── PBR lighting integration (matches Bevy 0.14 array_texture.wgsl) ─────
-    var pbr_input: PbrInput = pbr_input_new();
-    pbr_input.material.base_color = blended;
+    // Simple directional lighting (N·L)
+    let sun_dir = normalize(vec3<f32>(0.4, 0.8, 0.3));
+    let ndotl = max(dot(normal, sun_dir), 0.0);
+    let ambient = 0.3;
+    let lit = blended.rgb * (ambient + (1.0 - ambient) * ndotl);
 
-    let double_sided = (pbr_input.material.flags & STANDARD_MATERIAL_FLAGS_DOUBLE_SIDED_BIT) != 0u;
-
-    pbr_input.frag_coord = mesh.position;
-    pbr_input.world_position = mesh.world_position;
-    pbr_input.world_normal = fns::prepare_world_normal(
-        mesh.world_normal,
-        double_sided,
-        is_front,
-    );
-
-    pbr_input.is_orthographic = view.clip_from_view[3].w == 1.0;
-    pbr_input.N = normalize(pbr_input.world_normal);
-    pbr_input.V = fns::calculate_view(mesh.world_position, pbr_input.is_orthographic);
-
-    return tone_mapping(fns::apply_pbr_lighting(pbr_input), view.color_grading);
+    return vec4<f32>(lit, 1.0);
 }
