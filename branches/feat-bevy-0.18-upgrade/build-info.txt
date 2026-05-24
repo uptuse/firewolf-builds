@@ -1,3 +1,3 @@
-commit=51eabdf1
-built_at=2026-05-24 19:33 UTC
+commit=89153af9
+built_at=2026-05-24 19:43 UTC
 branch=feat/bevy-0.18-upgrade
