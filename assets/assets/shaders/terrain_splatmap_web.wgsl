@@ -28,6 +28,12 @@ var terrain_array_tex: texture_2d_array<f32>;
 @group(2) @binding(2)
 var terrain_array_sampler: sampler;
 
+// ── Debug mode ─────────────────────────────────────────────────────────────
+// Set to true to output ONLY the raw texture sample from layer 0 (rock).
+// If you see the rock texture tiling, textures work. If you see solid color,
+// the array texture binding is broken.
+const DEBUG_SINGLE_LAYER: bool = true;
+
 // ── Splat weight computation ────────────────────────────────────────────────
 
 /// Compute RGBA splat weights from world-space normal.y and altitude.
@@ -76,6 +82,12 @@ fn fragment(
     // World-space tiling UV (1 tile = 8m)
     let tile_scale = 0.125;
     let tex_uv = mesh.world_position.xz * tile_scale;
+
+    // DEBUG: output only rock texture (layer 0) to verify texture sampling works
+    if (DEBUG_SINGLE_LAYER) {
+        let rock_sample = textureSample(terrain_array_tex, terrain_array_sampler, tex_uv, 0);
+        return rock_sample;
+    }
 
     // Compute splat weights from world normal and position
     let normal = normalize(mesh.world_normal);
